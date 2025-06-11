@@ -10,13 +10,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  min-width: 400px;
+  width: 50vw;
   padding: 20px;
   box-sizing: border-box;
 }
 
-.options-container {
-  display: flex;
-  column-gap: 18px;
-  align-items: center;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 10px;
+  width: 100%;
+
+  div {
+    align-content: center;
+  }
 }

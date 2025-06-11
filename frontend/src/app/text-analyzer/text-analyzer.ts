@@ -5,7 +5,6 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {MatFormField, MatHint, MatInput} from '@angular/material/input';
 import {MatCard} from '@angular/material/card';
-import {MatGridList, MatGridTile, MatGridTileText} from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-text-analyzer',
@@ -17,10 +16,7 @@ import {MatGridList, MatGridTile, MatGridTileText} from '@angular/material/grid-
     MatInput,
     MatFormField,
     MatCard,
-    MatHint,
-    MatGridList,
-    MatGridTile,
-    MatGridTileText
+    MatHint
   ],
   templateUrl: './text-analyzer.html',
   styleUrl: './text-analyzer.css'
