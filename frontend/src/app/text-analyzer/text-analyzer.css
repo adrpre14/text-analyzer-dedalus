@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.analyzer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.options-container {
+  display: flex;
+  column-gap: 18px;
+  align-items: center;
+}
