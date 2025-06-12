@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {TextAnalyzerTypeEnum} from '../../../enums/text-analyzer-type.enum';
-import {TextAnalysisResponseInterface} from '../../../interfaces/text-analysis-response.interface';
+import {TextAnalyzerTypeEnum} from '../enums/text-analyzer-type.enum';
+import {TextAnalysisResponseInterface} from '../interfaces/text-analysis-response.interface';
 
 @Injectable()
 export class TextAnalyzerApi {

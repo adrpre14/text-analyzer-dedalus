@@ -1,0 +1,20 @@
+<mat-card class="general-card">
+  <h2>Text Analyzer History</h2>
+
+  @if (textAnalyzerService.getAnalysisHistory().length === 0) {
+    <p>No analysis history available.</p>
+  }
+  @for (entry of textAnalyzerService.getAnalysisHistory(); track entry.id) {
+    <mat-expansion-panel #panel class="expansion-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title [ngClass]="{'ellipsis': !panel.expanded}">
+          Sentence: {{ entry.fullText }}
+        </mat-panel-title>
+        <mat-panel-description> Type of analysis: {{ entry.type }} </mat-panel-description>
+      </mat-expansion-panel-header>
+      @for (letterResult of (entry.counts | transformTextAnalysisCount); track letterResult) {
+        <p>{{ letterResult }}</p>
+      }
+    </mat-expansion-panel>
+  }
+</mat-card>

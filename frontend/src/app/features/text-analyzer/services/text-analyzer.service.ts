@@ -1,12 +1,18 @@
-import {inject, Injectable} from '@angular/core';
-import {TextAnalyzerApi} from './api/text-analyzer.api';
-import {TextAnalyzerTypeEnum} from '../../enums/text-analyzer-type.enum';
-import {TextAnalysisResponseInterface} from '../../interfaces/text-analysis-response.interface';
+import {inject, Injectable, Signal, signal} from '@angular/core';
+import {TextAnalyzerApi} from './text-analyzer.api';
+import {TextAnalyzerTypeEnum} from '../enums/text-analyzer-type.enum';
+import {TextAnalysisResponseInterface} from '../interfaces/text-analysis-response.interface';
 import {Observable, of} from 'rxjs';
+import {sortTextAnalysis} from '../utils/sort-text-analysis.util';
 
 @Injectable()
 export class TextAnalyzerService {
   private textAnalyzerApi = inject(TextAnalyzerApi);
+  private analysisHistory = signal<TextAnalysisResponseInterface[]>([]);
+
+  public get getAnalysisHistory(): Signal<TextAnalysisResponseInterface[]> {
+    return this.analysisHistory.asReadonly();
+  }
 
   public analyzeText(
     type: TextAnalyzerTypeEnum,
@@ -15,6 +21,10 @@ export class TextAnalyzerService {
   ): Observable<TextAnalysisResponseInterface> {
     if (onlineMode) return this.textAnalyzerApi.analyzeText(type, text);
     return of(this.analyzeTextOffline(type, text));
+  }
+
+  public addToHistory(analysis: TextAnalysisResponseInterface): void {
+    this.analysisHistory.update(history => [analysis, ...history]);
   }
 
   private analyzeTextOffline(type: TextAnalyzerTypeEnum, text: string): TextAnalysisResponseInterface {
@@ -29,10 +39,13 @@ export class TextAnalyzerService {
       }
     }
 
-    const sortedEntries = Array.from(charMap.entries()).sort((a, b) => b[1] - a[1]);
+    const sortedEntries = Array.from(charMap.entries()).sort(sortTextAnalysis);
     return {
+      id: crypto.randomUUID(),
+      fullText: text,
+      type,
       counts: Object.fromEntries(sortedEntries)
-    }
+    };
   }
 
   private formatText(text: string, type: TextAnalyzerTypeEnum): string {

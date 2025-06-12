@@ -10,3 +10,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: var(--mat-sys-background);
 }
+
+.general-card {
+  align-items: center;
+  min-width: 400px;
+  width: 50vw;
+  padding: 20px;
+  box-sizing: border-box;
+}

@@ -5,10 +5,10 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {MatFormField, MatHint, MatInput} from '@angular/material/input';
 import {MatCard} from '@angular/material/card';
-import {TextAnalyzerService} from './text-analyzer.service';
-import {TextAnalyzerTypeEnum} from '../../enums/text-analyzer-type.enum';
-import {HttpClient} from '@angular/common/http';
-import {TextAnalyzerApi} from './api/text-analyzer.api';
+import {TextAnalyzerService} from './services/text-analyzer.service';
+import {TextAnalyzerTypeEnum} from './enums/text-analyzer-type.enum';
+import {TextAnalyzerApi} from './services/text-analyzer.api';
+import {TextAnalyzerHistory} from './components/text-analyzer-history/text-analyzer-history';
 
 @Component({
   selector: 'app-text-analyzer',
@@ -20,7 +20,8 @@ import {TextAnalyzerApi} from './api/text-analyzer.api';
     MatInput,
     MatFormField,
     MatCard,
-    MatHint
+    MatHint,
+    TextAnalyzerHistory
   ],
   providers: [TextAnalyzerService, TextAnalyzerApi],
   templateUrl: './text-analyzer.html',
@@ -40,7 +41,7 @@ export class TextAnalyzer {
     }
 
     this.textAnalyzerService.analyzeText(TextAnalyzerTypeEnum.Consonants, inputText, onlineMode).subscribe((result) => {
-      console.log(result);
+      this.textAnalyzerService.addToHistory(result);
     });
   }
 }
