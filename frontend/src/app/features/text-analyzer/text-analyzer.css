@@ -12,9 +12,14 @@
   gap: 10px;
   width: 100%;
 
-  div {
+  > div {
     align-content: center;
+    min-width: 0;
   }
+}
+
+.grid-container mat-form-field {
+  width: 100%;
 }
 
 .cards-container {

@@ -3,12 +3,14 @@ import {MatButton} from '@angular/material/button';
 import {MatSlideToggle} from '@angular/material/slide-toggle';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
-import {MatFormField, MatHint, MatInput} from '@angular/material/input';
+import {MatFormField, MatHint, MatInput, MatLabel} from '@angular/material/input';
 import {MatCard} from '@angular/material/card';
 import {TextAnalyzerService} from './services/text-analyzer.service';
 import {TextAnalyzerTypeEnum} from './enums/text-analyzer-type.enum';
 import {TextAnalyzerApi} from './services/text-analyzer.api';
 import {TextAnalyzerHistory} from './components/text-analyzer-history/text-analyzer-history';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {KeyValuePipe} from '@angular/common';
 
 @Component({
   selector: 'app-text-analyzer',
@@ -21,7 +23,11 @@ import {TextAnalyzerHistory} from './components/text-analyzer-history/text-analy
     MatFormField,
     MatCard,
     MatHint,
-    TextAnalyzerHistory
+    TextAnalyzerHistory,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    KeyValuePipe
   ],
   providers: [TextAnalyzerService, TextAnalyzerApi],
   templateUrl: './text-analyzer.html',
@@ -30,8 +36,10 @@ import {TextAnalyzerHistory} from './components/text-analyzer-history/text-analy
 export class TextAnalyzer {
   inputControl = new FormControl('');
   textAnalyzerModeControl = new FormControl(false);
+  typeOfAnalysis: TextAnalyzerTypeEnum = TextAnalyzerTypeEnum.Consonants;
 
   textAnalyzerService = inject(TextAnalyzerService);
+  public readonly TextAnalyzerTypeEnum = TextAnalyzerTypeEnum;
 
   analyze() {
     const onlineMode = !!this.textAnalyzerModeControl.value;
@@ -40,7 +48,7 @@ export class TextAnalyzer {
       return;
     }
 
-    this.textAnalyzerService.analyzeText(TextAnalyzerTypeEnum.Consonants, inputText, onlineMode).subscribe((result) => {
+    this.textAnalyzerService.analyzeText(this.typeOfAnalysis, inputText, onlineMode).subscribe((result) => {
       this.textAnalyzerService.addToHistory(result);
     });
   }

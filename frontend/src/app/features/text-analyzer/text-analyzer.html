@@ -2,7 +2,16 @@
   <mat-card class="general-card">
     <h2>Text Analyzer</h2>
     <div class="grid-container">
-      <div></div>
+      <div>
+        <mat-form-field>
+          <mat-label>Type of analysis:</mat-label>
+          <mat-select [(value)]="typeOfAnalysis">
+            @for (type of TextAnalyzerTypeEnum | keyvalue; track type.key) {
+              <mat-option [value]="type.value">{{ type.key }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
       <div>
         <mat-form-field appearance="outline" style="width:100%;">
         <textarea
