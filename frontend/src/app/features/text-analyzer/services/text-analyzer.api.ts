@@ -1,19 +1,22 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {TextAnalyzerTypeEnum} from '../enums/text-analyzer-type.enum';
 import {TextAnalysisResponseInterface} from '../interfaces/text-analysis-response.interface';
+import {BaseApiService} from '../../../shared/services/base-api.service';
+import {map} from 'rxjs';
 
 @Injectable()
 export class TextAnalyzerApi {
-  private httpClient = inject(HttpClient);
+  private baseApiService = inject(BaseApiService);
 
   public analyzeText(type: TextAnalyzerTypeEnum, text: string) {
-    const url = `/api/analyze-text`;
-    const body = {
-      type,
+    return this.baseApiService.get<TextAnalysisResponseInterface>('/analyze', {
+      type: TextAnalyzerTypeEnum[type],
       text
-    };
-
-    return this.httpClient.post<TextAnalysisResponseInterface>(url, body, { responseType: 'json' });
+    }).pipe(
+      map((result) => ({
+        ...result,
+        type: TextAnalyzerTypeEnum[result.type] as unknown as TextAnalyzerTypeEnum
+      }))
+    );
   }
 }
