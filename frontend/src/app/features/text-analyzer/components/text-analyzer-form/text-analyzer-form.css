@@ -1,0 +1,33 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 10px;
+  width: 100%;
+
+  > div {
+    align-content: center;
+    min-width: 0;
+  }
+}
+
+.grid-container mat-form-field {
+  width: 100%;
+}
+
+.result-info {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  column-gap: 10px;
+
+  #sentence-span {
+    max-width: 70%;
+    overflow-wrap: anywhere;
+  }
+
+  #sentence-span, #type-analysis-span {
+    span {
+      font-weight: bold;
+    }
+  }
+}

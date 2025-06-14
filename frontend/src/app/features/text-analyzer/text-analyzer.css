@@ -6,22 +6,6 @@
   padding: 1rem 0;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap: 10px;
-  width: 100%;
-
-  > div {
-    align-content: center;
-    min-width: 0;
-  }
-}
-
-.grid-container mat-form-field {
-  width: 100%;
-}
-
 .cards-container {
   display: flex;
   flex-direction: column;
@@ -29,21 +13,4 @@
   justify-content: flex-start;
   width: 100%;
   row-gap: 18px;
-}
-
-.result-info {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  column-gap: 10px;
-
-  #sentence-span {
-    width: 70%;
-  }
-
-  #sentence-span, #type-analysis-span {
-    span {
-      font-weight: bold;
-    }
-  }
 }
