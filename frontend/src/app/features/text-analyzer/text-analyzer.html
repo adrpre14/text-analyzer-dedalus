@@ -39,6 +39,17 @@
     <div style="margin-top: 2em">
       <mat-slide-toggle [formControl]="textAnalyzerModeControl">Online Mode</mat-slide-toggle>
     </div>
+    @if (!!textAnalyzerService.lastResult) {
+      <mat-divider></mat-divider>
+      <h3 style="margin-top: 0">Last Result: </h3>
+      <div class="result-info">
+        <span id="sentence-span"><span>Sentence:</span> {{ textAnalyzerService.lastResult.fullText }}</span>
+        <span id="type-analysis-span"><span>Type of analysis:</span> {{ textAnalyzerService.lastResult.type }}</span>
+      </div>
+      @for (analysisEntry of textAnalyzerService.lastResult.counts | transformTextAnalysisCount; track analysisEntry) {
+        <p>{{ analysisEntry }}</p>
+      }
+    }
   </mat-card>
 
   <app-text-analyzer-history></app-text-analyzer-history>

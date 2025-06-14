@@ -30,3 +30,20 @@
   width: 100%;
   row-gap: 18px;
 }
+
+.result-info {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  column-gap: 10px;
+
+  #sentence-span {
+    width: 70%;
+  }
+
+  #sentence-span, #type-analysis-span {
+    span {
+      font-weight: bold;
+    }
+  }
+}

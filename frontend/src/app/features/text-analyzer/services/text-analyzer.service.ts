@@ -14,6 +14,10 @@ export class TextAnalyzerService {
     return this.analysisHistory.asReadonly();
   }
 
+  public get lastResult(): TextAnalysisResponseInterface {
+    return this.analysisHistory()[0];
+  }
+
   public analyzeText(
     type: TextAnalyzerTypeEnum,
     text: string,

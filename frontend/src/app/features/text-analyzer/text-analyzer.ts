@@ -11,6 +11,8 @@ import {TextAnalyzerApi} from './services/text-analyzer.api';
 import {TextAnalyzerHistory} from './components/text-analyzer-history/text-analyzer-history';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {KeyValuePipe} from '@angular/common';
+import {MatDivider} from '@angular/material/divider';
+import {TransformTextAnalysisCountPipe} from './pipes/transform-text-analysis-count.pipe';
 
 @Component({
   selector: 'app-text-analyzer',
@@ -27,7 +29,9 @@ import {KeyValuePipe} from '@angular/common';
     MatLabel,
     MatSelect,
     MatOption,
-    KeyValuePipe
+    KeyValuePipe,
+    MatDivider,
+    TransformTextAnalysisCountPipe
   ],
   providers: [TextAnalyzerService, TextAnalyzerApi],
   templateUrl: './text-analyzer.html',

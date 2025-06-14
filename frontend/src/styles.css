@@ -16,7 +16,11 @@ body {
   min-width: 400px;
   width: 50vw;
   padding: 20px;
-  box-sizing: border-box;
+
+  mat-divider {
+    width: 100%;
+    margin: 18px 0;
+  }
 }
 
 .cdk-overlay-pane {
