@@ -55,9 +55,9 @@ export class TextAnalyzerService {
   private formatText(text: string, type: TextAnalyzerTypeEnum): string {
     let formattedText = text.replaceAll(/[^a-zA-Z]/g, '').toLowerCase();
 
-    if (type === TextAnalyzerTypeEnum.Vowels)
+    if (type === TextAnalyzerTypeEnum.VOWELS)
       formattedText = formattedText.replaceAll(/[^aeiouAEIOU]/g, '');
-    else if (type === TextAnalyzerTypeEnum.Consonants)
+    else if (type === TextAnalyzerTypeEnum.CONSONANTS)
       formattedText = formattedText.replaceAll(/[aeiouAEIOU]/g, '');
 
     return formattedText;

@@ -10,7 +10,7 @@
         <mat-panel-title [ngClass]="{'ellipsis': !panel.expanded}">
           Sentence: {{ entry.fullText }}
         </mat-panel-title>
-        <mat-panel-description>Type of analysis: {{ entry.type }}</mat-panel-description>
+        <mat-panel-description>Type of analysis: {{ TextAnalyzerTypeEnum[entry.type] | titlecase }}</mat-panel-description>
       </mat-expansion-panel-header>
       @for (letterResult of (entry.counts | transformTextAnalysisCount); track letterResult) {
         <p>{{ letterResult }}</p>

@@ -1,4 +1,4 @@
 export enum TextAnalyzerTypeEnum {
-  Vowels = 'vowels',
-  Consonants = 'consonants'
+  CONSONANTS,
+  VOWELS
 }
