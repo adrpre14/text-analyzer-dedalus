@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TextAnalyzer } from './text-analyzer';
+import {BaseApiService} from '../../shared/services/base-api.service';
 
 describe('TextAnalyzer', () => {
   let component: TextAnalyzer;
@@ -8,7 +9,10 @@ describe('TextAnalyzer', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TextAnalyzer]
+      imports: [TextAnalyzer],
+      providers: [
+        { provide: BaseApiService, useValue: {} }
+      ]
     })
     .compileComponents();
 

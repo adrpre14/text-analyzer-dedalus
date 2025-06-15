@@ -6,7 +6,11 @@ describe('TextAnalyzerApi', () => {
   let service: TextAnalyzerApi;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: TextAnalyzerApi, useValue: {} }
+      ]
+    });
     service = TestBed.inject(TextAnalyzerApi);
   });
 
