@@ -11,6 +11,7 @@ import {TransformTextAnalysisCountPipe} from '../../pipes/transform-text-analysi
 import {TextAnalyzerTypeEnum} from '../../enums/text-analyzer-type.enum';
 import {TextAnalyzerService} from '../../services/text-analyzer.service';
 import {MatOption, MatSelect} from '@angular/material/select';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-text-analyzer-form',
@@ -47,6 +48,7 @@ export class TextAnalyzerForm {
   }));
 
   textAnalyzerService = inject(TextAnalyzerService);
+  private _snackBar = inject(MatSnackBar);
   public readonly TextAnalyzerTypeEnum = TextAnalyzerTypeEnum;
 
   analyze() {
@@ -57,8 +59,15 @@ export class TextAnalyzerForm {
       return;
     }
 
-    this.textAnalyzerService.analyzeText(typeOfAnalysis, inputText, onlineMode).subscribe((result) => {
-      this.textAnalyzerService.addToHistory(result);
-    });
+    this.textAnalyzerService.analyzeText(typeOfAnalysis, inputText, onlineMode).subscribe(
+      {
+        next: (result) => this.textAnalyzerService.addToHistory(result),
+        error: () => {
+          this._snackBar.open('Something went wrong while analyzing the text.', 'Dismiss', {
+            duration: 3000
+          })
+        }
+      }
+      );
   }
 }
